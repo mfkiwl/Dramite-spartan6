@@ -1,5 +1,7 @@
 rtl/builddate.v
 rtl/obj_dir/
+sim/obj_pc/
+rtl/design.h
 
 isim/
 _xmsgs/
@@ -51,3 +53,8 @@ top_*
 *.xst
 *.html
 *.xbcd
+
+*.vcd
+
+busmaster_tb
+tools/bin2mif
