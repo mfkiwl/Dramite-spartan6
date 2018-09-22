@@ -29,7 +29,7 @@
 ##
 ################################################################################
 
-all:	test cpudefs.h design.h
+all:	test design.h
 YYMMDD=`date +%Y%m%d`
 CXX   := g++
 FBDIR := .

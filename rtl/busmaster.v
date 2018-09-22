@@ -24,12 +24,18 @@ module busmaster(
     input              cpu_ble_n,     // Low Byte Enable 
     output             cpu_busy_n,    // Busy
     output             cpu_clk2,      // Clock
+    /* verilator lint_off UNUSED */
+    // This should be used when the interrupt is supported.
     input              cpu_dc,        // H: Data, Low: Control
+    /* verilator lint_on UNUSED */
     output             cpu_error_n,   // Error
+    /* verilator lint_off UNUSED */
+    // There is nothing else on the CPU bus, no need to hold the bus, for now.
     input              cpu_hlda,      // Bus Hold Acknowledge
+    input              cpu_lock_n,    // Bus Lock
+    /* verilator lint_on UNUSED */
     output             cpu_hold,      // Bus Hold Request
     output             cpu_intr,      // Interrupt Request
-    input              cpu_lock_n,    // Bus Lock
     input              cpu_mio,       // H: Memory, L: IO
     output             cpu_na_n,      // Next Address
     output             cpu_nmi,       // Non-Maskable Interrupt Request
@@ -96,6 +102,8 @@ module busmaster(
     reg         bus_mem_rd_valid;
 
     // IO Bus
+    /* verilator lint_off UNUSED */
+    // IO bus is not a thing... yet.
     reg         bus_io_wr_ack;
     reg  [31:0] bus_io_wr_data;
     reg  [31:2] bus_io_address;
@@ -104,6 +112,7 @@ module busmaster(
     reg         bus_io_rd_enable;
     reg  [31:0] bus_io_rd_data;
     reg         bus_io_rd_valid;
+    /* verilator lint_on UNUSED */
 
     // Clock & Reset
     assign cpu_clk2 = clk;
