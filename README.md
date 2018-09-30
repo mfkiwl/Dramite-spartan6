@@ -41,14 +41,14 @@ Board-specific:
 
 Verilated Simulator:
 
- - [ ] Basic memory support
+ - [x] Basic memory support
  - [ ] x86 CPU simulation
  - [ ] VGA monitor
  - [ ] Serial console
 
 # Acknowledge
 
-This project use the "tiny x86 cpu emulator" by tuz358 (https://github.com/tuz358/cpu-emulator). This allowed full system simulation without a real CPU.
+This project use the "tiny x86 cpu emulator" by tuz358 (https://github.com/tuz358/cpu-emulator). This allowed simulation without a real CPU.
 
 # Copyright
 

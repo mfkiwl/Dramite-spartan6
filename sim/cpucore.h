@@ -1,32 +1,32 @@
 /*******************************************************************************
-
     This program is free software (firmware): you can redistribute it and/or
     modify it under the terms of  the GNU General Public License as published
     by the Free Software Foundation, either version 3 of the License, or (at
     your option) any later version.
-   
+
     This program is distributed in the hope that it will be useful, but WITHOUT
     ANY WARRANTY; without even the implied warranty of MERCHANTIBILITY or
     FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
     for more details.
-   
+
     You should have received a copy of the GNU General Public License along
     with this program.  (It's in the $(ROOT)/doc directory.  Run make with no
     target there if the PDF file isn't present.)  If not, see
     <http://www.gnu.org/licenses/> for a copy.
 
-    Description: A memory simulation model with simple delay control
+    Description: 32-bit X86 CPU core
 
     Copyright (C) 2018 Wenting Zhang
     Copyright (C) 2018 Kanta Mori
 
 *******************************************************************************/
+#pragma once
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
-#include "memory.h"
-#include "utils.h"
+#include "cpubus.h"
 
 // eflags
 const uint32_t CF = 1;
@@ -46,25 +46,29 @@ const int SUB = 5;
 const int XOR = 6;
 const int CMP = 7;
 
-class Instructions{
+class CPUCORE{
 private:
   void init_instructions();
   void set_flag(int flag, uint32_t flag_type);
   int get_flag(uint32_t flag_type);
+  uint32_t swap_endian32(uint32_t data);
 public:
-  Memory memory;
+  CPUBUS *cpubus;
   uint32_t registers[8];        // eax, ecx, edx, ebx, esp, ebp, esi, edi
   uint32_t eflags;              // EFLAGS register
   uint32_t eip;                 // Instruction pointer
 
   uint8_t modrm, mod, R, M;     // ModRM
 
-  void (Instructions::*instructions[256])(void);
+  CPUCORE(CPUBUS *bus): cpubus(bus) {};
 
-  void init(uint32_t eip, uint32_t esp, Memory memory);
+  void (CPUCORE::*instructions[256])(void);
+
+  void init(uint32_t eip, uint32_t esp);
   void init_modrm();
   void calc_modrm();
   void execute_opcode(uint8_t opcode);
+  void run();
 
   // templates
   void template_rm32_r32(int calc_type);

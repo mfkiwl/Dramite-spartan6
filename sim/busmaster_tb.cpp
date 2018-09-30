@@ -25,15 +25,18 @@
 #include <ctype.h>
 
 #include "verilated.h"
+#include "verilated_vcd_c.h"
 #include "Vbusmaster.h"
 
-#include "testb.h"
 #include "memsim.h"
 #include "cpusim.h"
 
 #define VVAR(A) busmaster__DOT_ ## A
 
-class TESTBENCH:public TESTB<Vbusmaster> {
+class TESTBENCH {
+    Vbusmaster *m_core;
+    VerilatedVcdC* m_trace;
+    unsigned long  m_tickcount;
 public:
     bool m_done;
     CPUSIM *m_cpu;
@@ -41,11 +44,39 @@ public:
     MEMSIM *m_ram;
     unsigned char fake_rom_wr_ack;
 
-    TESTBENCH(void) {
+    TESTBENCH() {
+        m_core = new Vbusmaster;
+        Verilated::traceEverOn(true);
+
         m_done = false;
         m_cpu = new CPUSIM();
         m_bios = new MEMSIM(32 * 1024 / 4, 0);
         m_ram = new MEMSIM(640 * 1024 / 4, 2);
+    }
+
+    ~TESTBENCH() {
+        if (m_trace) m_trace->close();
+        delete m_core;
+        m_core = NULL;
+    }
+
+    void opentrace(const char *vcdname) {
+        if (!m_trace) {
+            m_trace = new VerilatedVcdC;
+            m_core->trace(m_trace, 99);
+            m_trace->open(vcdname);
+        }
+    }
+
+    void closetrace(void) {
+        if (m_trace) {
+            m_trace->close();
+            m_trace = NULL;
+        }
+    }
+
+    void eval(void) {
+        m_core->eval();
     }
 
     void load_bios(const char *fname) {
@@ -82,7 +113,8 @@ public:
             m_core->cpu_pereq, 
             m_core->cpu_ready_n, 
             m_core->cpu_reset, 
-            m_core->cpu_wr);
+            m_core->cpu_wr,
+            m_done);
 
         m_bios->operator()(
             0, 
@@ -104,7 +136,29 @@ public:
             m_core->ram_rd_data, 
             m_core->ram_rd_valid);
         
-        TESTBENCH::tick();
+        m_tickcount++;
+
+        // Make sure we have our evaluations straight before the top
+        // of the clock.  This is necessary since some of the 
+        // connection modules may have made changes, for which some
+        // logic depends.  This forces that logic to be recalculated
+        // before the top of the clock.
+        eval();
+        if (m_trace) m_trace->dump(10*m_tickcount-2);
+        m_core->clk = 1;
+        eval();
+        if (m_trace) m_trace->dump(10*m_tickcount);
+        m_core->clk = 0;
+        eval();
+        if (m_trace) m_trace->dump(10*m_tickcount+5);
+    }
+
+    void reset(void) {
+        m_core->rst = 1;
+        tick();
+        m_core->rst = 0;
+        // printf("RESET\n");
+        m_cpu->start();
     }
 };
 
@@ -123,13 +177,17 @@ void usage(void) {
 int main(int argc, char **argv) {
     const char *trace_file = "trace.vcd";
     const char *bios_file = "../bios/bios.bin";
-    TESTBENCH *tb = new TESTBENCH();
+    
+    printf("Dramite Simulator\n");
 
     Verilated::commandArgs(argc, argv);
 
+    tb = new TESTBENCH();
     tb->load_bios(bios_file);
     tb->opentrace(trace_file);
     tb->reset();
+
+    printf("Initialized.\n");
 
     while(!tb->done()) {
         tb->tick();
