@@ -50,7 +50,7 @@ public:
 
         m_done = false;
         m_cpu = new CPUSIM();
-        m_bios = new MEMSIM(32 * 1024 / 4, 0);
+        m_bios = new MEMSIM(64 * 1024 / 4, 0);
         m_ram = new MEMSIM(640 * 1024 / 4, 2);
     }
 
@@ -183,7 +183,8 @@ int main(int argc, char **argv) {
     Verilated::commandArgs(argc, argv);
 
     tb = new TESTBENCH();
-    tb->load_bios(bios_file);
+    if (argc == 2)
+        tb->load_bios(argv[1]);
     tb->opentrace(trace_file);
     tb->reset();
 

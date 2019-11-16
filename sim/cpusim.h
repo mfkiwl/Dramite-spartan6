@@ -33,8 +33,9 @@ class CPUSIM {
 private:
     typedef enum bus_state {
         BUS_IDLE,
-        BUS_S1,
-        BUS_S2,
+        BUS_C1_T2,
+        BUS_C2_T1,
+        BUS_C2_T2,
         BUS_DONE
     } BusState;
 
@@ -42,13 +43,15 @@ private:
     uint16_t _bus_req_data;
     bool _bus_req_wr;
     bool _bus_req_mio;
+    bool _bus_req_bhe;
+    bool _bus_req_ble;
     BusState _bus_state;
     uint8_t _last_reset;
 
 public:
 
-    // For testbench run. Normally start at FFF0
-    const uint32_t CPU_INIT_EIP = 10;
+    // For testbench run. Normally start at FFFF0
+    const uint32_t CPU_INIT_EIP = 0xF0000;
     // For testbench run
     const uint32_t CPU_INIT_ESP = 0;
 
@@ -60,6 +63,8 @@ public:
     bool m_bus_completed; 
     uint32_t m_bus_req_addr;
     uint16_t m_bus_req_data;
+    bool m_bus_req_bhe;
+    bool m_bus_req_ble;
     bool m_bus_req_wr;
     bool m_bus_req_mio;
     std::thread *cpu_thread;

@@ -3,6 +3,8 @@ rtl/obj_dir/
 sim/obj_pc/
 rtl/design.h
 
+*.o
+
 isim/
 _xmsgs/
 iseconfig/

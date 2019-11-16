@@ -141,11 +141,31 @@ void CPUCORE::calc_modrm(){
   this->M   =  this->modrm & 0x07;
 }
 
+void CPUCORE::dump_registers(){
+  printf("eax = 0x%08x (%d)\n", registers[0], registers[0]);
+  printf("ecx = 0x%08x (%d)\n", registers[1], registers[1]);
+  printf("edx = 0x%08x (%d)\n", registers[2], registers[2]);
+  printf("ebx = 0x%08x (%d)\n", registers[3], registers[3]);
+  printf("esp = 0x%08x (%d)\n", registers[4], registers[4]);
+  printf("ebp = 0x%08x (%d)\n", registers[5], registers[5]);
+  printf("esi = 0x%08x (%d)\n", registers[6], registers[6]);
+  printf("edi = 0x%08x (%d)\n", registers[7], registers[7]);
+  printf("eip = 0x%08x (%d)\n", eip,          eip);
+}
+
 void CPUCORE::run(){
+  printf("CPU thread start running. EIP = %08x\n", this->eip);
   while(this->eip != 0x00) {
-    uint8_t opcode = cpubus -> read_uint8(eip++);
+    uint8_t opcode = cpubus->read_uint8(eip++);
+    if (opcode == 0x00) {
+      printf("Invalid opcode!\n");
+      break;
+    }
+    printf("Opcode %02x\n", opcode);
     execute_opcode(opcode);
+    dump_registers();
   }
+  //dump_registers();
 }
 
 void CPUCORE::execute_opcode(uint8_t opcode){
@@ -483,8 +503,9 @@ void CPUCORE::jne_imm8(){
   //printf("jne_imm8 called.\n");
 
   int8_t imm8 = cpubus->read_int8(this->eip);
-
+  printf("imm8 = %d\n", imm8);
   int zero_flag = this->get_flag(ZF);
+  printf("ZF = %d\n", zero_flag);
   if (!zero_flag){
     this->eip += imm8;
   }

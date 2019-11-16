@@ -68,6 +68,7 @@ public:
   void init_modrm();
   void calc_modrm();
   void execute_opcode(uint8_t opcode);
+  void dump_registers();
   void run();
 
   // templates

@@ -59,7 +59,7 @@ $(OBJDIR)/%.o: $(VINCD)/%.cpp
 
 busmaster_tb: $(OBJDIR)/busmaster_tb.o $(OBJS)
 busmaster_tb: $(VOBJS) $(VOBJDR)/Vbusmaster__ALL.a
-	$(CXX) $(GFXLIBS) $(INCS) $^ $(VOBJDR)/Vbusmaster__ALL.a $(GFXLIBS) -lelf -o $@
+	$(CXX) $(GFXLIBS) $(INCS) $^ $(VOBJDR)/Vbusmaster__ALL.a $(GFXLIBS) -lpthread -o $@
 
 define	mk-objdir
 	@bash -c "if [ ! -e $(OBJDIR) ]; then mkdir -p $(OBJDIR); fi"
@@ -68,6 +68,7 @@ endef
 .PHONY: clean
 clean:
 	rm -f *.vcd
+	rm -f *.o
 	rm -rf $(OBJDIR)/
 	rm -f $(PROGRAMS)
 

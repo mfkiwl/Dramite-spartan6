@@ -28,6 +28,13 @@
 #include <mutex>
 #include <condition_variable>
 
+// Definition for wr
+#define REQ_WR  true
+#define REQ_RD  false
+// Definition for mio
+#define REQ_MEM true
+#define REG_IO  false
+
 class CPUBUS {
 public:
     std::mutex& m_mutex;
@@ -36,12 +43,23 @@ public:
     bool& m_bus_completed;
     uint32_t& m_bus_req_addr;
     uint16_t& m_bus_req_data;
+    bool& m_bus_req_bhe;
+    bool& m_bus_req_ble;
     bool& m_bus_req_wr;
     bool& m_bus_req_mio;
     
-    CPUBUS(std::mutex& mutex, std::condition_variable& cond, bool& bus_request, bool& bus_completed, uint32_t& bus_req_addr, uint16_t& bus_req_data, bool& bus_req_wr, bool& bus_req_mio): m_mutex(mutex), m_cond(cond), m_bus_request(bus_request), m_bus_completed(bus_completed), m_bus_req_addr(bus_req_addr), m_bus_req_data(bus_req_data), m_bus_req_wr(bus_req_wr), m_bus_req_mio(bus_req_mio) {};
+    CPUBUS(std::mutex& mutex, std::condition_variable& cond, bool& bus_request,
+            bool& bus_completed, uint32_t& bus_req_addr, uint16_t& bus_req_data,
+            bool& bus_req_bhe, bool& bus_req_ble, bool& bus_req_wr, 
+            bool& bus_req_mio):
+            m_mutex(mutex), m_cond(cond), m_bus_request(bus_request),
+            m_bus_completed(bus_completed), m_bus_req_addr(bus_req_addr),
+            m_bus_req_data(bus_req_data), m_bus_req_bhe(bus_req_bhe), 
+            m_bus_req_ble(bus_req_ble), m_bus_req_wr(bus_req_wr),
+            m_bus_req_mio(bus_req_mio) {};
 
-    uint16_t start_transaction(uint32_t addr, uint16_t data, bool wr, bool mio);
+    uint16_t bus_transaction(uint32_t addr, uint16_t data, bool wr, bool bhe, 
+            bool ble, bool mio);
     uint8_t read_uint8(uint32_t addr);
     int8_t read_int8(uint32_t addr);
     uint32_t read_uint32(uint32_t addr);

@@ -28,6 +28,7 @@
 #include "memsim.h"
 
 MEMSIM::MEMSIM(const unsigned int nwords, const unsigned int delay) {
+    m_len = nwords;
     m_mem = new BUSW[m_len];
     m_delay = delay;
     delay_count = 0;
@@ -41,6 +42,9 @@ void MEMSIM::load(const char *fname) {
     FILE *fp;
     unsigned int nr;
 
+    for(nr = 0; nr < m_len; nr++)
+        m_mem[nr] = 0l;
+
     fp = fopen(fname, "r");
     if (!fp) {
         fprintf(stderr, "Could not open/load file \'%s\'\n",
@@ -49,18 +53,14 @@ void MEMSIM::load(const char *fname) {
         fprintf(stderr, "\tInitializing memory with zero instead.\n");
         nr = 0;
     } else {
-        nr = fread(m_mem, sizeof(BUSW), m_len, fp);
+        nr = fread(m_mem, 1, m_len * sizeof(BUSW), fp);
         fclose(fp);
 
-        if (nr != m_len) {
-            fprintf(stderr, "Only read %d of %d words\n",
-                nr, m_len);
-            fprintf(stderr, "\tFilling the rest with zero.\n");
+        if (nr != m_len * sizeof(BUSW)) {
+            fprintf(stderr, "Only read %d of %lu bytes.\n",
+                nr, m_len * sizeof(BUSW));
         }
     }
-
-    for(; nr<m_len; nr++)
-        m_mem[nr] = 0l;
 }
 
 void MEMSIM::load(const unsigned int addr, const char *buf, const size_t len) {
@@ -72,18 +72,21 @@ void MEMSIM::apply(const BUSW wr_data, const BUSW address,
     uchar &wr_ack, BUSW &rd_data, uchar &rd_valid) {
     unsigned sel = 0;
 
+    if (address > m_len) {
+        printf("Access out of boundary: %08x.\n", address);
+        return;
+    }
+
     if (wr_mask&0x8)
-        sel |= 0x0ff000000;
+        sel |= 0xff000000;
     if (wr_mask&0x4)
-        sel |= 0x000ff0000;
+        sel |= 0x00ff0000;
     if (wr_mask&0x2)
-        sel |= 0x00000ff00;
+        sel |= 0x0000ff00;
     if (wr_mask&0x1)
-        sel |= 0x0000000ff;
+        sel |= 0x000000ff;
 
     if (delay_count == 0) {
-        wr_ack = 1;
-        rd_valid = 1;
         if (wr_enable) {
             if (sel == 0xffffffffu)
                 m_mem[address] = wr_data;
@@ -94,8 +97,8 @@ void MEMSIM::apply(const BUSW wr_data, const BUSW address,
                 m_mem[address] = memv;
             }
             delay_count = m_delay;
-            wr_ack = 0;
             rd_valid = 0;
+            wr_ack = 1;
 #ifdef DEBUG
         printf("MEMBUS W[%08x] = %08x\n",
             address,
@@ -105,8 +108,8 @@ void MEMSIM::apply(const BUSW wr_data, const BUSW address,
         else if (rd_enable) {
             rd_data = m_mem[address];
             delay_count = m_delay;
+            rd_valid = 1;
             wr_ack = 0;
-            rd_valid = 0;
 #ifdef DEBUG
         printf("MEMBUS R[%08x] = %08x\n",
             address,
