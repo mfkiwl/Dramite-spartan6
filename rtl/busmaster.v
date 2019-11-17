@@ -93,11 +93,11 @@ module busmaster(
     // Internal Bus
     // Memory Bus
     reg         bus_mem_wr_ack;
-    reg  [31:0] bus_mem_wr_data;
-    reg  [31:2] bus_mem_address;
-    reg         bus_mem_wr_enable;
-    reg  [3:0]  bus_mem_wr_mask;
-    reg         bus_mem_rd_enable;
+    wire [31:0] bus_mem_wr_data;
+    wire [31:2] bus_mem_address;
+    wire        bus_mem_wr_enable;
+    wire [3:0]  bus_mem_wr_mask;
+    wire        bus_mem_rd_enable;
     reg  [31:0] bus_mem_rd_data;
     reg         bus_mem_rd_valid;
 
@@ -105,11 +105,11 @@ module busmaster(
     /* verilator lint_off UNUSED */
     // IO bus is not a thing... yet.
     reg         bus_io_wr_ack;
-    reg  [31:0] bus_io_wr_data;
-    reg  [31:2] bus_io_address;
-    reg         bus_io_wr_enable;
-    reg  [3:0]  bus_io_wr_mask;
-    reg         bus_io_rd_enable;
+    wire [31:0] bus_io_wr_data;
+    wire [31:2] bus_io_address;
+    wire        bus_io_wr_enable;
+    wire [3:0]  bus_io_wr_mask;
+    wire        bus_io_rd_enable;
     reg  [31:0] bus_io_rd_data;
     reg         bus_io_rd_valid;
     /* verilator lint_on UNUSED */
@@ -118,143 +118,46 @@ module busmaster(
     assign cpu_clk2 = clk;
     assign cpu_reset = rst;
 
-    // 386 Bus (24bit A + 16b D)
-    localparam CPU_BUS_S0 = 3'd0; // Idle, no bus req       000
-    localparam CPU_BUS_S1 = 3'd1; // Start Bus Transfer     001
-    localparam CPU_BUS_S2 = 3'd2; // Check R/W Status       010
-    localparam CPU_BUS_S3 = 3'd3; // Waiting for Bus finish 011
-    localparam CPU_BUS_S4 = 3'd4; // Waiting for R/W finish 100
-    // Only handle non-pipelined transfer
-    // Note: D/C is not currently handled, lock is not used now.
-    reg [2:0] cpu_bus_state;
-    reg [3:0] cpu_bus_wr_mask;
-
-    reg [15:0] cpu_d_wr;
-    wire [15:0] cpu_d_rd;
-    reg        cpu_d_dir; // 0: Ext->Int, 1: Int->Ext
-    assign cpu_d = (cpu_d_dir) ? (cpu_d_wr) : (16'hzzzz);
-    assign cpu_d_rd = (cpu_d_dir) ? (cpu_d_wr) : (cpu_d);
-
-    always @(posedge cpu_clk2, posedge rst) begin
-        if (rst) begin
-            cpu_bus_state <= CPU_BUS_S0;
-            cpu_ready_n <= 1'b1;
-            cpu_d_dir <= 1'b0;
-            bus_mem_address <= 30'b0;
-            bus_io_address <= 30'b0;
-        end
-        else begin
-            case (cpu_bus_state)
-                CPU_BUS_S0: begin
-                    cpu_d_dir <= 1'b0;
-                    cpu_ready_n <= 1'b1; // Data not ready
-                    if (!cpu_ads_n) begin
-                        // Bus cycle start
-                        if (cpu_mio) begin 
-                            // This is a memory access cycle
-                            bus_mem_address[23:2] <= cpu_a[23:2];
-                            if (!cpu_wr) bus_mem_rd_enable <= 1'b1;
-                        end
-                        else begin
-                            // This is a IO access cycle
-                            bus_io_address[23:2] <= cpu_a[23:2];
-                            if (!cpu_wr) bus_io_rd_enable <= 1'b1;
-                        end
-                        cpu_bus_wr_mask[3] <= ~cpu_bhe_n &  cpu_a[1];
-                        cpu_bus_wr_mask[2] <= ~cpu_ble_n &  cpu_a[1];
-                        cpu_bus_wr_mask[1] <= ~cpu_bhe_n & ~cpu_a[1];
-                        cpu_bus_wr_mask[0] <= ~cpu_ble_n & ~cpu_a[1];
-                        cpu_bus_state <= CPU_BUS_S1;
-                    end
-                end
-                CPU_BUS_S1: begin
-                    if (cpu_wr) begin
-                        // Write data becomes available at this stage
-                        if (cpu_mio) begin
-                            if (cpu_a[1])
-                                bus_mem_wr_data[31:16] <= cpu_d_rd[15:0];
-                            else
-                                bus_mem_wr_data[15:0] <= cpu_d_rd[15:0];
-                            bus_mem_wr_mask <= cpu_bus_wr_mask;
-                            bus_mem_wr_enable <= 1'b1;
-                        end
-                        else begin
-                            if (cpu_a[1])
-                                bus_io_wr_data[31:16] <= cpu_d_rd[15:0];
-                            else
-                                bus_io_wr_data[15:0] <= cpu_d_rd[15:0];
-                            bus_io_wr_mask <= cpu_bus_wr_mask;
-                            bus_io_wr_enable <= 1'b1;
-                        end
-                    end
-                    cpu_bus_state <= CPU_BUS_S2;
-                end
-                CPU_BUS_S2: begin
-                    if (cpu_wr) begin
-                        // Check if write have finished
-                        if (cpu_mio) begin
-                            if (bus_mem_wr_ack) begin
-                                cpu_ready_n <= 1'b0;
-                                cpu_bus_state <= CPU_BUS_S3;
-                            end
-                            else begin
-                                cpu_bus_state <= CPU_BUS_S4;
-                            end
-                        end
-                        else begin
-                            if (bus_io_wr_ack) begin
-                                cpu_ready_n <= 1'b0;
-                                cpu_bus_state <= CPU_BUS_S3;
-                            end
-                            else begin
-                                cpu_bus_state <= CPU_BUS_S4;
-                            end
-                        end
-                    end
-                    else begin
-                        // Check if read have finished 
-                        if (cpu_mio) begin
-                            if (bus_mem_rd_valid) begin
-                                cpu_d_dir <= 1'b1;
-                                if (cpu_a[1])
-                                    cpu_d_wr[15:0] <= bus_mem_rd_data[31:16];
-                                else
-                                    cpu_d_wr[15:0] <= bus_mem_rd_data[15:0];
-                                cpu_ready_n <= 1'b0;
-                                cpu_bus_state <= CPU_BUS_S3;
-                            end
-                            else begin
-                                cpu_bus_state <= CPU_BUS_S4;
-                            end
-                        end
-                        else begin
-                            if (bus_mem_rd_valid) begin
-                                cpu_d_dir <= 1'b1;
-                                if (cpu_a[1])
-                                    cpu_d_wr[15:0] <= bus_mem_rd_data[31:16];
-                                else
-                                    cpu_d_wr[15:0] <= bus_mem_rd_data[15:0];
-                                cpu_ready_n <= 1'b0;
-                                cpu_bus_state <= CPU_BUS_S3;
-                            end
-                            else begin
-                                cpu_bus_state <= CPU_BUS_S4;
-                            end
-                        end
-                    end
-                end
-                CPU_BUS_S3: begin
-                    cpu_bus_state <= CPU_BUS_S0;
-                end
-                CPU_BUS_S4: begin
-                    cpu_bus_state <= CPU_BUS_S2;
-                end
-                default: begin
-                    cpu_bus_state <= CPU_BUS_S0;
-                end
-            endcase
-        end
-    end
+    cpu_interface cpu_interface(
+        .clk(clk),
+        .rst(rst),
+        .cpu_a(cpu_a),
+        .cpu_d(cpu_d),
+        .cpu_ads_n(cpu_ads_n),
+        .cpu_bhe_n(cpu_bhe_n),
+        .cpu_ble_n(cpu_ble_n),
+        .cpu_busy_n(cpu_busy_n),
+        .cpu_clk2(cpu_clk2),
+        .cpu_dc(cpu_dc),
+        .cpu_error_n(cpu_error_n),
+        .cpu_hlda(cpu_hlda),
+        .cpu_lock_n(cpu_lock_n),
+        .cpu_hold(cpu_hold),
+        .cpu_intr(cpu_intr),
+        .cpu_mio(cpu_mio),
+        .cpu_na_n(cpu_na_n),
+        .cpu_nmi(cpu_nmi),
+        .cpu_pereq(cpu_pereq),
+        .cpu_ready_n(cpu_ready_n),
+        .cpu_reset(cpu_reset),
+        .cpu_wr(cpu_wr),
+        .mem_wr_ack(bus_mem_wr_ack),
+        .mem_wr_data(bus_mem_wr_data),
+        .mem_address(bus_mem_address),
+        .mem_wr_enable(bus_mem_wr_enable),
+        .mem_wr_mask(bus_mem_wr_mask),
+        .mem_rd_enable(bus_mem_rd_enable),
+        .mem_rd_data(bus_mem_rd_data),
+        .mem_rd_valid(bus_mem_rd_valid),
+        .io_wr_ack(bus_io_wr_ack),
+        .io_wr_data(bus_io_wr_data),
+        .io_address(bus_io_address),
+        .io_wr_enable(bus_io_wr_enable),
+        .io_wr_mask(bus_io_wr_mask),
+        .io_rd_enable(bus_io_rd_enable),
+        .io_rd_data(bus_io_rd_data),
+        .io_rd_valid(bus_io_rd_valid)
+    )
 
     wire [31:0] bus_mem_addr_pad = {bus_mem_address, 2'b0};
 
@@ -326,14 +229,7 @@ module busmaster(
         end    
     end
 
-    // Disable all unhandled signals
-    assign cpu_nmi = 1'b0;
-    assign cpu_pereq = 1'b0;
-    assign cpu_busy_n = 1'b1;
-    assign cpu_error_n = 1'b1;
-    assign cpu_hold = 1'b0;
-    assign cpu_na_n = 1'b1;
-    assign cpu_intr = 1'b0;
+    
     assign vga_vsync = 1'b1;
     assign vga_hsync = 1'b1;
     assign vga_pclk = 1'b0;
