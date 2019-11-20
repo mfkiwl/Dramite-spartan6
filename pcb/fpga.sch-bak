@@ -1,0 +1,651 @@
+EESchema Schematic File Version 4
+LIBS:pcb-cache
+EELAYER 30 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 2 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L FPGA_Xilinx_Spartan6:XC6SLX45-FGG484 U200
+U 1 1 5DDE4DDE
+P 12200 5000
+F 0 "U200" H 12200 425 50  0000 C CNN
+F 1 "XC6SLX45-FGG484" H 12200 334 50  0000 C CNN
+F 2 "Package_BGA:BGA-484_23.0x23.0mm_Layout22x22_P1.0mm" H 12200 5000 50  0001 C CNN
+F 3 "" H 12200 5000 50  0000 C CNN
+	1    12200 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L FPGA_Xilinx_Spartan6:XC6SLX45-FGG484 U200
+U 2 1 5DDF3DC0
+P 4500 5900
+F 0 "U200" H 4500 425 50  0000 C CNN
+F 1 "XC6SLX45-FGG484" H 4500 334 50  0000 C CNN
+F 2 "Package_BGA:BGA-484_23.0x23.0mm_Layout22x22_P1.0mm" H 4500 5900 50  0001 C CNN
+F 3 "" H 4500 5900 50  0000 C CNN
+	2    4500 5900
+	1    0    0    -1  
+$EndComp
+Text HLabel 15300 2900 2    50   Output ~ 0
+DDR0_RESET_N
+Text Label 14300 4300 0    50   ~ 0
+DDR0_A0
+Text Label 14300 4400 0    50   ~ 0
+DDR0_A1
+Text Label 14300 4000 0    50   ~ 0
+DDR0_A2
+Text Label 14300 3900 0    50   ~ 0
+DDR0_A7
+Text Label 14300 4700 0    50   ~ 0
+DDR0_A3
+Text Label 14300 4900 0    50   ~ 0
+DDR0_A5
+Text Label 14300 5000 0    50   ~ 0
+DDR0_A6
+Text Label 14300 3600 0    50   ~ 0
+DDR0_A4
+Text Label 14300 3500 0    50   ~ 0
+DDR0_A10
+Text Label 14300 3400 0    50   ~ 0
+DDR0_A9
+Text Label 14300 3300 0    50   ~ 0
+DDR0_A8
+Text Label 14300 3200 0    50   ~ 0
+DDR0_A12
+Text Label 14300 3000 0    50   ~ 0
+DDR0_A11
+Text Label 14300 2700 0    50   ~ 0
+DDR0_A13
+Text Label 14300 2800 0    50   ~ 0
+DDR0_A14
+Entry Wire Line
+	14700 2700 14800 2600
+Entry Wire Line
+	14700 2800 14800 2700
+Entry Wire Line
+	14700 3000 14800 2900
+Entry Wire Line
+	14700 3200 14800 3100
+Entry Wire Line
+	14700 3300 14800 3200
+Entry Wire Line
+	14700 3400 14800 3300
+Entry Wire Line
+	14700 3500 14800 3400
+Entry Wire Line
+	14700 3600 14800 3500
+Entry Wire Line
+	14700 3900 14800 3800
+Entry Wire Line
+	14700 4000 14800 3900
+Entry Wire Line
+	14700 4300 14800 4200
+Entry Wire Line
+	14700 4400 14800 4300
+Entry Wire Line
+	14700 4700 14800 4600
+Entry Wire Line
+	14700 4900 14800 4800
+Entry Wire Line
+	14700 5000 14800 4900
+Wire Bus Line
+	14800 2600 15300 2600
+Text HLabel 15300 2600 2    50   Output ~ 0
+DDR0_A[0..14]
+Wire Wire Line
+	14200 2700 14700 2700
+Wire Wire Line
+	14200 2800 14700 2800
+Wire Wire Line
+	14200 3000 14700 3000
+Wire Wire Line
+	14200 3200 14700 3200
+Wire Wire Line
+	14200 3300 14700 3300
+Wire Wire Line
+	14200 3400 14700 3400
+Wire Wire Line
+	14200 3500 14700 3500
+Wire Wire Line
+	14200 3600 14700 3600
+Wire Wire Line
+	14200 3900 14700 3900
+Wire Wire Line
+	14200 4000 14700 4000
+Wire Wire Line
+	14200 4300 14700 4300
+Wire Wire Line
+	14200 4400 14700 4400
+Wire Wire Line
+	14200 4900 14700 4900
+Wire Wire Line
+	14200 4700 14700 4700
+Wire Wire Line
+	14200 5000 14700 5000
+Text Label 14300 3800 0    50   ~ 0
+DDR0_BA2
+Text Label 14300 4100 0    50   ~ 0
+DDR0_BA0
+Text Label 14300 4200 0    50   ~ 0
+DDR0_BA1
+Entry Wire Line
+	14900 4100 15000 4000
+Entry Wire Line
+	14900 4200 15000 4100
+Entry Wire Line
+	14900 3800 15000 3700
+Wire Wire Line
+	14200 4100 14900 4100
+Text HLabel 15300 3700 2    50   Output ~ 0
+DDR0_WE_N
+Text HLabel 15300 3600 2    50   Output ~ 0
+DDR0_BA[0..2]
+Wire Bus Line
+	15000 3600 15300 3600
+Text HLabel 15300 3100 2    50   Output ~ 0
+DDR0_CKE
+Text HLabel 15300 4500 2    50   Output ~ 0
+DDR0_CK_P
+Text HLabel 15300 4600 2    50   Output ~ 0
+DDR0_CK_N
+Text HLabel 15300 4800 2    50   Output ~ 0
+DDR0_ODT
+Text HLabel 15300 5200 2    50   Output ~ 0
+DDR0_CAS_N
+Text HLabel 15300 5100 2    50   Output ~ 0
+DDR0_RAS_N
+Text HLabel 15300 5300 2    50   Output ~ 0
+DDR0_UDM
+Text HLabel 15300 5400 2    50   Output ~ 0
+DDR0_LDM
+Wire Wire Line
+	14200 4500 15300 4500
+Wire Wire Line
+	14200 5100 15300 5100
+Wire Wire Line
+	14200 5200 15300 5200
+Wire Wire Line
+	14200 5300 15300 5300
+Text HLabel 15300 5000 2    50   BiDi ~ 0
+DDR0_DQ[0..15]
+Text Label 14300 6300 0    50   ~ 0
+DDR0_DQ0
+Text Label 14300 6400 0    50   ~ 0
+DDR0_DQ1
+Text Label 14300 6100 0    50   ~ 0
+DDR0_DQ2
+Text Label 14300 6200 0    50   ~ 0
+DDR0_DQ3
+Text Label 14300 5500 0    50   ~ 0
+DDR0_DQ4
+Text Label 14300 5600 0    50   ~ 0
+DDR0_DQ5
+Text Label 14300 5700 0    50   ~ 0
+DDR0_DQ6
+Text Label 14300 5800 0    50   ~ 0
+DDR0_DQ7
+Text Label 14300 6500 0    50   ~ 0
+DDR0_DQ8
+Text Label 14300 6600 0    50   ~ 0
+DDR0_DQ9
+Text Label 14300 6700 0    50   ~ 0
+DDR0_DQ10
+Text Label 14300 6800 0    50   ~ 0
+DDR0_DQ11
+Text Label 14300 7100 0    50   ~ 0
+DDR0_DQ12
+Text Label 14300 7200 0    50   ~ 0
+DDR0_DQ13
+Text Label 14300 7300 0    50   ~ 0
+DDR0_DQ14
+Text Label 14300 7400 0    50   ~ 0
+DDR0_DQ15
+Entry Wire Line
+	15100 5500 15200 5400
+Wire Wire Line
+	14200 5500 15100 5500
+Entry Wire Line
+	15100 5600 15200 5500
+Wire Wire Line
+	14200 5600 15100 5600
+Entry Wire Line
+	15100 5700 15200 5600
+Wire Wire Line
+	14200 5700 15100 5700
+Entry Wire Line
+	15100 5800 15200 5700
+Wire Wire Line
+	14200 5800 15100 5800
+Entry Wire Line
+	15100 6100 15200 6000
+Wire Wire Line
+	14200 6100 15100 6100
+Entry Wire Line
+	15100 6200 15200 6100
+Wire Wire Line
+	14200 6200 15100 6200
+Entry Wire Line
+	15100 6300 15200 6200
+Wire Wire Line
+	14200 6300 15100 6300
+Entry Wire Line
+	15100 6400 15200 6300
+Wire Wire Line
+	14200 6400 15100 6400
+Entry Wire Line
+	15100 6500 15200 6400
+Wire Wire Line
+	14200 6500 15100 6500
+Entry Wire Line
+	15100 6600 15200 6500
+Wire Wire Line
+	14200 6600 15100 6600
+Entry Wire Line
+	15100 6700 15200 6600
+Wire Wire Line
+	14200 6700 15100 6700
+Entry Wire Line
+	15100 6800 15200 6700
+Wire Wire Line
+	14200 6800 15100 6800
+Entry Wire Line
+	15100 7100 15200 7000
+Wire Wire Line
+	14200 7100 15100 7100
+Entry Wire Line
+	15100 7200 15200 7100
+Wire Wire Line
+	14200 7200 15100 7200
+Entry Wire Line
+	15100 7300 15200 7200
+Wire Wire Line
+	14200 7300 15100 7300
+Entry Wire Line
+	15100 7400 15200 7300
+Wire Wire Line
+	14200 7400 15100 7400
+Wire Bus Line
+	15200 5000 15300 5000
+Text HLabel 15300 5900 2    50   BiDi ~ 0
+DDR0_LDQS_P
+Text HLabel 15300 6000 2    50   BiDi ~ 0
+DDR0_LDQS_N
+Text HLabel 15300 6900 2    50   BiDi ~ 0
+DDR0_UDQS_P
+Text HLabel 15300 7000 2    50   BiDi ~ 0
+DDR0_UDQS_N
+Wire Wire Line
+	14200 5900 15300 5900
+Wire Wire Line
+	14200 6900 15300 6900
+Text Label 14300 2900 0    50   ~ 0
+DDR0_RESET_N
+Text Label 14300 3100 0    50   ~ 0
+DDR0_CKE
+Text Label 14300 3700 0    50   ~ 0
+DDR0_WE_N
+Text Label 14300 4500 0    50   ~ 0
+DDR0_CK_P
+Text Label 14300 4600 0    50   ~ 0
+DDR0_CK_N
+Text Label 14300 4800 0    50   ~ 0
+DDR0_ODT
+Text Label 14300 5100 0    50   ~ 0
+DDR0_RAS_N
+Text Label 14300 5200 0    50   ~ 0
+DDR0_CAS_N
+Text Label 14300 5300 0    50   ~ 0
+DDR0_UDM
+Text Label 14300 5400 0    50   ~ 0
+DDR0_LDM
+Text Label 14300 5900 0    50   ~ 0
+DDR0_LDQS_P
+Text Label 14300 6000 0    50   ~ 0
+DDR0_LDQS_N
+Text Label 14300 6900 0    50   ~ 0
+DDR0_UDQS_P
+Text Label 14300 7000 0    50   ~ 0
+DDR0_UDQS_N
+Text Label 6600 3700 0    50   ~ 0
+DDR1_DQ14
+Text Label 6600 3800 0    50   ~ 0
+DDR1_DQ15
+Text Label 6600 3900 0    50   ~ 0
+DDR1_DQ12
+Text Label 6600 4000 0    50   ~ 0
+DDR1_DQ13
+Text Label 6600 4300 0    50   ~ 0
+DDR1_DQ10
+Text Label 6600 4400 0    50   ~ 0
+DDR1_DQ11
+Text Label 6600 4500 0    50   ~ 0
+DDR1_DQ8
+Text Label 6600 4600 0    50   ~ 0
+DDR1_DQ9
+Text Label 6600 4700 0    50   ~ 0
+DDR1_DQ0
+Text Label 6600 4800 0    50   ~ 0
+DDR1_DQ1
+Text Label 6600 4900 0    50   ~ 0
+DDR1_DQ2
+Text Label 6600 5000 0    50   ~ 0
+DDR1_DQ3
+Text Label 6600 5300 0    50   ~ 0
+DDR1_DQ6
+Text Label 6600 5400 0    50   ~ 0
+DDR1_DQ7
+Text Label 6600 5500 0    50   ~ 0
+DDR1_DQ4
+Text Label 6600 5600 0    50   ~ 0
+DDR1_DQ5
+Text HLabel 7600 3600 2    50   BiDi ~ 0
+DDR1_DQ[0..15]
+Entry Wire Line
+	7000 3700 7100 3600
+Entry Wire Line
+	7000 3800 7100 3700
+Entry Wire Line
+	7000 3900 7100 3800
+Entry Wire Line
+	7000 4000 7100 3900
+Entry Wire Line
+	7000 4300 7100 4200
+Entry Wire Line
+	7000 4400 7100 4300
+Entry Wire Line
+	7000 4500 7100 4400
+Entry Wire Line
+	7000 4600 7100 4500
+Entry Wire Line
+	7000 4700 7100 4600
+Entry Wire Line
+	7000 4800 7100 4700
+Entry Wire Line
+	7000 4900 7100 4800
+Entry Wire Line
+	7000 5000 7100 4900
+Entry Wire Line
+	7000 5300 7100 5200
+Entry Wire Line
+	7000 5400 7100 5300
+Entry Wire Line
+	7000 5500 7100 5400
+Entry Wire Line
+	7000 5600 7100 5500
+Wire Bus Line
+	7100 3600 7600 3600
+Wire Wire Line
+	6500 3700 7000 3700
+Wire Wire Line
+	6500 3800 7000 3800
+Wire Wire Line
+	6500 3900 7000 3900
+Wire Wire Line
+	6500 4000 7000 4000
+Wire Wire Line
+	6500 4300 7000 4300
+Wire Wire Line
+	6500 4400 7000 4400
+Wire Wire Line
+	6500 4500 7000 4500
+Wire Wire Line
+	6500 4600 7000 4600
+Wire Wire Line
+	6500 4700 7000 4700
+Wire Wire Line
+	6500 4800 7000 4800
+Wire Wire Line
+	6500 4900 7000 4900
+Wire Wire Line
+	6500 5000 7000 5000
+Wire Wire Line
+	6500 5300 7000 5300
+Wire Wire Line
+	6500 5400 7000 5400
+Wire Wire Line
+	6500 5500 7000 5500
+Wire Wire Line
+	6500 5600 7000 5600
+Text HLabel 7600 4100 2    50   BiDi ~ 0
+DDR1_UDQS_P
+Text HLabel 7600 4200 2    50   BiDi ~ 0
+DDR1_UDQS_N
+Text HLabel 7600 5100 2    50   BiDi ~ 0
+DDR1_LDQS_P
+Text HLabel 7600 5200 2    50   BiDi ~ 0
+DDR1_LDQS_N
+Text HLabel 7600 5700 2    50   Output ~ 0
+DDR1_UDM
+Text HLabel 7600 5800 2    50   Output ~ 0
+DDR1_LDM
+Text HLabel 7600 5900 2    50   Output ~ 0
+DDR1_RAS_N
+Text HLabel 7600 6000 2    50   Output ~ 0
+DDR1_CAS_N
+Text HLabel 7600 5600 2    50   Output ~ 0
+DDR1_A[0..14]
+Text HLabel 7600 6400 2    50   Output ~ 0
+DDR1_ODT
+Text HLabel 7600 6500 2    50   Output ~ 0
+DDR1_CK_P
+Text HLabel 7600 6600 2    50   Output ~ 0
+DDR1_CK_N
+Text HLabel 7600 6800 2    50   Output ~ 0
+DDR1_BA[0..2]
+Text HLabel 7600 7300 2    50   Output ~ 0
+DDR1_WE_N
+Text HLabel 7600 7900 2    50   Output ~ 0
+DDR1_CKE
+Text HLabel 7600 8100 2    50   Output ~ 0
+DDR1_RESET_N
+Wire Wire Line
+	6500 5700 7600 5700
+Wire Wire Line
+	6500 5800 7600 5800
+Wire Wire Line
+	6500 5900 7600 5900
+Wire Wire Line
+	6500 6400 7600 6400
+Wire Wire Line
+	6500 6500 7600 6500
+Wire Wire Line
+	6500 6100 7200 6100
+Entry Wire Line
+	7200 6100 7300 6000
+Entry Wire Line
+	7200 6200 7300 6100
+Entry Wire Line
+	7200 6800 7300 6700
+Entry Wire Line
+	7400 6900 7500 6800
+Entry Wire Line
+	7400 7000 7500 6900
+Entry Wire Line
+	7200 7100 7300 7000
+Entry Wire Line
+	7200 7200 7300 7100
+Wire Wire Line
+	6500 6800 7200 6800
+Wire Wire Line
+	6500 7100 7200 7100
+Wire Wire Line
+	6500 7200 7200 7200
+Entry Wire Line
+	7200 6700 7300 6600
+Wire Wire Line
+	6500 6700 7200 6700
+Wire Wire Line
+	7200 6200 6500 6200
+Entry Wire Line
+	7200 7500 7300 7400
+Wire Wire Line
+	6500 7500 7200 7500
+Entry Wire Line
+	7200 6300 7300 6200
+Wire Wire Line
+	6500 6300 7200 6300
+Entry Wire Line
+	7200 7600 7300 7500
+Wire Wire Line
+	6500 7600 7200 7600
+Entry Wire Line
+	7200 7700 7300 7600
+Wire Wire Line
+	6500 7700 7200 7700
+Entry Wire Line
+	7200 7800 7300 7700
+Wire Wire Line
+	6500 7800 7200 7800
+Entry Wire Line
+	7200 8000 7300 7900
+Wire Wire Line
+	6500 8000 7200 8000
+Entry Wire Line
+	7200 8200 7300 8100
+Wire Wire Line
+	6500 8200 7200 8200
+Entry Wire Line
+	7200 8300 7300 8200
+Wire Wire Line
+	6500 8300 7200 8300
+Entry Wire Line
+	7200 8400 7300 8300
+Wire Wire Line
+	6500 8400 7200 8400
+Entry Wire Line
+	7400 7400 7500 7300
+Wire Wire Line
+	6500 6900 7400 6900
+Text Label 6600 4100 0    50   ~ 0
+DDR1_UDQS_P
+Text Label 6600 4200 0    50   ~ 0
+DDR1_UDQS_N
+Text Label 6600 5100 0    50   ~ 0
+DDR1_LDQS_P
+Text Label 6600 5200 0    50   ~ 0
+DDR1_LDQS_N
+Text Label 6600 5800 0    50   ~ 0
+DDR1_LDM
+Text Label 6600 5700 0    50   ~ 0
+DDR1_UDM
+Text Label 6600 5900 0    50   ~ 0
+DDR1_RAS_N
+Text Label 6600 6000 0    50   ~ 0
+DDR1_CAS_N
+Text Label 6600 6100 0    50   ~ 0
+DDR1_A5
+Text Label 6600 6200 0    50   ~ 0
+DDR1_A6
+Text Label 6600 6300 0    50   ~ 0
+DDR1_A3
+Text Label 6600 6400 0    50   ~ 0
+DDR1_ODT
+Text Label 6600 6500 0    50   ~ 0
+DDR1_CK_P
+Text Label 6600 6600 0    50   ~ 0
+DDR1_CK_N
+Text Label 6600 6700 0    50   ~ 0
+DDR1_A0
+Text Label 6600 6800 0    50   ~ 0
+DDR1_A1
+Text Label 6600 6900 0    50   ~ 0
+DDR1_BA0
+Text Label 6600 7000 0    50   ~ 0
+DDR1_BA1
+Text Label 6600 7100 0    50   ~ 0
+DDR1_A7
+Text Label 6600 7200 0    50   ~ 0
+DDR1_A2
+Text Label 6600 7300 0    50   ~ 0
+DDR1_WE_N
+Text Label 6600 7400 0    50   ~ 0
+DDR1_BA2
+Text Label 6600 7500 0    50   ~ 0
+DDR1_A10
+Text Label 6600 7600 0    50   ~ 0
+DDR1_A4
+Text Label 6600 7700 0    50   ~ 0
+DDR1_A8
+Text Label 6600 7800 0    50   ~ 0
+DDR1_A9
+Text Label 6600 7900 0    50   ~ 0
+DDR1_CKE
+Text Label 6600 8000 0    50   ~ 0
+DDR1_A12
+Text Label 6600 8100 0    50   ~ 0
+DDR1_RESET_N
+Text Label 6600 8200 0    50   ~ 0
+DDR1_A11
+Text Label 6600 8300 0    50   ~ 0
+DDR1_A13
+Text Label 6600 8400 0    50   ~ 0
+DDR1_A14
+Wire Bus Line
+	7300 5600 7600 5600
+Wire Bus Line
+	7500 6800 7600 6800
+Wire Wire Line
+	6500 4100 7600 4100
+Wire Wire Line
+	6500 5100 7600 5100
+Wire Wire Line
+	6500 7300 7600 7300
+Wire Wire Line
+	6500 8100 7600 8100
+Wire Wire Line
+	6500 7900 7600 7900
+Wire Wire Line
+	6500 6600 7600 6600
+Wire Wire Line
+	6500 6000 7600 6000
+Wire Wire Line
+	14200 7000 15300 7000
+Wire Wire Line
+	14200 6000 15300 6000
+Wire Wire Line
+	14200 5400 15300 5400
+Wire Wire Line
+	14200 3700 15300 3700
+Wire Wire Line
+	14200 4800 15300 4800
+Wire Wire Line
+	14200 4600 15300 4600
+Wire Wire Line
+	14200 4200 14900 4200
+Wire Wire Line
+	14200 3800 14900 3800
+Wire Wire Line
+	14200 3100 15300 3100
+Wire Wire Line
+	14200 2900 15300 2900
+Wire Wire Line
+	6500 7000 7400 7000
+Wire Wire Line
+	6500 7400 7400 7400
+Wire Bus Line
+	7500 6800 7500 7300
+Wire Wire Line
+	6500 4200 7600 4200
+Wire Wire Line
+	6500 5200 7600 5200
+Wire Bus Line
+	15000 3600 15000 4100
+Wire Bus Line
+	14800 2600 14800 4900
+Wire Bus Line
+	7100 3600 7100 5500
+Wire Bus Line
+	7300 5600 7300 8300
+Wire Bus Line
+	15200 5000 15200 7300
+$EndSCHEMATC

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name symbol)(type Legacy)(uri ${KIPRJMOD}/symbol.lib)(options "")(descr ""))
+  (lib (name HDMI2USB-cache)(type Legacy)(uri /home/wenting/Documents/HDMI2USB-numato-opsis-hardware/board/HDMI2USB-cache.lib)(options "")(descr ""))
+)

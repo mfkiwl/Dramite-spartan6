@@ -1,0 +1,427 @@
+EESchema Schematic File Version 4
+LIBS:pcb-cache
+EELAYER 30 0
+EELAYER END
+$Descr A3 16535 11693
+encoding utf-8
+Sheet 4 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L symbol:NG80386DX U5
+U 1 1 5DD4EA41
+P 5000 4500
+F 0 "U5" H 4950 5350 50  0000 L CNN
+F 1 "NG80386DX" H 4800 5250 50  0000 L CNN
+F 2 "Package_QFP:PQFP-132_24x24mm_P0.635mm_i386" H 5000 5350 50  0001 C CNN
+F 3 "" H 4850 5100 50  0001 C CNN
+	1    5000 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbol:NG80386DX U5
+U 2 1 5DD5665B
+P 12100 4500
+F 0 "U5" H 12100 5365 50  0000 C CNN
+F 1 "NG80386DX" H 12100 5274 50  0000 C CNN
+F 2 "Package_QFP:PQFP-132_24x24mm_P0.635mm_i386" H 12100 5350 50  0001 C CNN
+F 3 "" H 11950 5100 50  0001 C CNN
+	2    12100 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbol:SN74LVC16T245DGGR U3
+U 1 1 5DD69F2D
+P 2300 3500
+F 0 "U3" H 2300 1811 50  0000 C CNN
+F 1 "SN74LVC16T245DGGR" H 2300 1720 50  0000 C CNN
+F 2 "Package_SO:TSSOP-48_6.1x12.5mm_P0.5mm" H 3200 2300 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/sn74avc8t245.pdf" H 2250 3250 50  0001 C CNN
+	1    2300 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L symbol:SN74LVC16T245DGGR U4
+U 1 1 5DD6DBF6
+P 2300 6000
+F 0 "U4" H 2300 4311 50  0000 C CNN
+F 1 "SN74LVC16T245DGGR" H 2300 4220 50  0000 C CNN
+F 2 "Package_SO:TSSOP-48_6.1x12.5mm_P0.5mm" H 3200 4800 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/sn74avc8t245.pdf" H 2250 5750 50  0001 C CNN
+	1    2300 6000
+	1    0    0    -1  
+$EndComp
+Text Label 4200 3900 0    50   ~ 0
+CPU_A2
+Text Label 4200 4000 0    50   ~ 0
+CPU_A3
+Text Label 4200 4100 0    50   ~ 0
+CPU_A4
+Text Label 4200 4200 0    50   ~ 0
+CPU_A5
+Text Label 4200 4300 0    50   ~ 0
+CPU_A6
+Text Label 4200 4400 0    50   ~ 0
+CPU_A7
+Text Label 4200 4500 0    50   ~ 0
+CPU_A8
+Text Label 4200 4600 0    50   ~ 0
+CPU_A9
+Text Label 4200 4700 0    50   ~ 0
+CPU_A10
+Text Label 4200 4800 0    50   ~ 0
+CPU_A11
+Text Label 4200 4900 0    50   ~ 0
+CPU_A12
+Text Label 4200 5000 0    50   ~ 0
+CPU_A13
+Text Label 4200 5100 0    50   ~ 0
+CPU_A14
+Text Label 4200 5200 0    50   ~ 0
+CPU_A15
+Text Label 4200 5300 0    50   ~ 0
+CPU_A16
+Text Label 4200 5400 0    50   ~ 0
+CPU_A17
+Text Label 4200 5500 0    50   ~ 0
+CPU_A18
+Text Label 4200 5600 0    50   ~ 0
+CPU_A19
+Text Label 4200 5700 0    50   ~ 0
+CPU_A20
+Text Label 4200 5800 0    50   ~ 0
+CPU_A21
+Text Label 4200 5900 0    50   ~ 0
+CPU_A22
+Text Label 4200 6000 0    50   ~ 0
+CPU_A23
+Text Label 4200 6100 0    50   ~ 0
+CPU_A24
+Text Label 4200 6200 0    50   ~ 0
+CPU_A25
+Text Label 4200 6300 0    50   ~ 0
+CPU_A26
+Text Label 4200 6400 0    50   ~ 0
+CPU_A27
+Text Label 4200 6500 0    50   ~ 0
+CPU_A28
+Text Label 4200 6600 0    50   ~ 0
+CPU_A29
+Text Label 4200 6700 0    50   ~ 0
+CPU_A30
+Text Label 4200 6800 0    50   ~ 0
+CPU_A31
+Entry Wire Line
+	4100 3800 4200 3900
+Entry Wire Line
+	4100 3900 4200 4000
+Entry Wire Line
+	4100 4000 4200 4100
+Entry Wire Line
+	4100 4100 4200 4200
+Entry Wire Line
+	4100 4200 4200 4300
+Entry Wire Line
+	4100 4300 4200 4400
+Entry Wire Line
+	4100 4400 4200 4500
+Entry Wire Line
+	4100 4500 4200 4600
+Entry Wire Line
+	4100 4600 4200 4700
+Entry Wire Line
+	4100 4700 4200 4800
+Entry Wire Line
+	4100 4800 4200 4900
+Entry Wire Line
+	4100 4900 4200 5000
+Entry Wire Line
+	4100 5000 4200 5100
+Entry Wire Line
+	4100 5100 4200 5200
+Entry Wire Line
+	4100 5200 4200 5300
+Entry Wire Line
+	4100 5300 4200 5400
+Entry Wire Line
+	4100 5400 4200 5500
+Entry Wire Line
+	4100 5500 4200 5600
+Entry Wire Line
+	4100 5600 4200 5700
+Entry Wire Line
+	4100 5700 4200 5800
+Entry Wire Line
+	4100 5800 4200 5900
+Entry Wire Line
+	4100 5900 4200 6000
+Entry Wire Line
+	4100 6000 4200 6100
+Entry Wire Line
+	4100 6100 4200 6200
+Entry Wire Line
+	4100 6200 4200 6300
+Entry Wire Line
+	4100 6300 4200 6400
+Entry Wire Line
+	4100 6400 4200 6500
+Entry Wire Line
+	4100 6500 4200 6600
+Entry Wire Line
+	4100 6600 4200 6700
+Entry Wire Line
+	4100 6700 4200 6800
+Wire Wire Line
+	4200 3900 4600 3900
+Wire Wire Line
+	4200 4000 4600 4000
+Wire Wire Line
+	4200 4100 4600 4100
+Wire Wire Line
+	4200 4200 4600 4200
+Wire Wire Line
+	4200 4300 4600 4300
+Wire Wire Line
+	4200 4400 4600 4400
+Wire Wire Line
+	4200 4500 4600 4500
+Wire Wire Line
+	4200 4600 4600 4600
+Wire Wire Line
+	4200 4700 4600 4700
+Wire Wire Line
+	4200 4800 4600 4800
+Wire Wire Line
+	4200 4900 4600 4900
+Wire Wire Line
+	4200 5000 4600 5000
+Wire Wire Line
+	4200 5100 4600 5100
+Wire Wire Line
+	4200 5200 4600 5200
+Wire Wire Line
+	4200 5300 4600 5300
+Wire Wire Line
+	4200 5400 4600 5400
+Wire Wire Line
+	4200 5500 4600 5500
+Wire Wire Line
+	4200 5600 4600 5600
+Wire Wire Line
+	4200 5700 4600 5700
+Wire Wire Line
+	4200 5800 4600 5800
+Wire Wire Line
+	4200 5900 4600 5900
+Wire Wire Line
+	4200 6000 4600 6000
+Wire Wire Line
+	4200 6100 4600 6100
+Wire Wire Line
+	4200 6200 4600 6200
+Wire Wire Line
+	4200 6300 4600 6300
+Wire Wire Line
+	4200 6400 4600 6400
+Wire Wire Line
+	4200 6500 4600 6500
+Wire Wire Line
+	4200 6600 4600 6600
+Wire Wire Line
+	4200 6700 4600 6700
+Wire Wire Line
+	4200 6800 4600 6800
+Text Label 2900 4600 0    50   ~ 0
+CPU_A2
+Text Label 2900 4500 0    50   ~ 0
+CPU_A3
+Text Label 2900 4400 0    50   ~ 0
+CPU_A4
+Text Label 2900 4300 0    50   ~ 0
+CPU_A5
+Text Label 2900 4200 0    50   ~ 0
+CPU_A6
+Text Label 2900 4100 0    50   ~ 0
+CPU_A7
+Text Label 2900 4000 0    50   ~ 0
+CPU_A8
+Text Label 2900 3900 0    50   ~ 0
+CPU_A9
+Text Label 2900 3800 0    50   ~ 0
+CPU_A10
+Text Label 2900 3700 0    50   ~ 0
+CPU_A11
+Text Label 2900 3600 0    50   ~ 0
+CPU_A12
+Text Label 2900 3500 0    50   ~ 0
+CPU_A13
+Text Label 2900 3400 0    50   ~ 0
+CPU_A14
+Text Label 2900 3300 0    50   ~ 0
+CPU_A15
+Text Label 2900 7300 0    50   ~ 0
+CPU_A16
+Text Label 2900 7200 0    50   ~ 0
+CPU_A17
+Text Label 2900 7100 0    50   ~ 0
+CPU_A18
+Text Label 2900 7000 0    50   ~ 0
+CPU_A19
+Text Label 2900 6900 0    50   ~ 0
+CPU_A20
+Text Label 2900 6800 0    50   ~ 0
+CPU_A21
+Text Label 2900 6700 0    50   ~ 0
+CPU_A22
+Text Label 2900 6600 0    50   ~ 0
+CPU_A23
+Text Label 2900 6500 0    50   ~ 0
+CPU_A24
+Text Label 2900 6400 0    50   ~ 0
+CPU_A25
+Text Label 2900 6300 0    50   ~ 0
+CPU_A26
+Text Label 2900 6200 0    50   ~ 0
+CPU_A27
+Text Label 2900 6100 0    50   ~ 0
+CPU_A28
+Text Label 2900 6000 0    50   ~ 0
+CPU_A29
+Text Label 2900 5900 0    50   ~ 0
+CPU_A30
+Text Label 2900 5800 0    50   ~ 0
+CPU_A31
+Entry Wire Line
+	3300 3300 3400 3200
+Entry Wire Line
+	3300 3400 3400 3300
+Entry Wire Line
+	3300 3500 3400 3400
+Entry Wire Line
+	3300 3600 3400 3500
+Entry Wire Line
+	3300 3700 3400 3600
+Entry Wire Line
+	3300 3800 3400 3700
+Entry Wire Line
+	3300 3900 3400 3800
+Entry Wire Line
+	3300 4000 3400 3900
+Entry Wire Line
+	3300 4100 3400 4000
+Entry Wire Line
+	3300 4200 3400 4100
+Entry Wire Line
+	3300 4300 3400 4200
+Entry Wire Line
+	3300 4400 3400 4300
+Entry Wire Line
+	3300 4500 3400 4400
+Entry Wire Line
+	3300 4600 3400 4500
+Entry Wire Line
+	3300 5800 3400 5700
+Entry Wire Line
+	3300 5900 3400 5800
+Entry Wire Line
+	3300 6000 3400 5900
+Entry Wire Line
+	3300 6100 3400 6000
+Entry Wire Line
+	3300 6200 3400 6100
+Entry Wire Line
+	3300 6300 3400 6200
+Entry Wire Line
+	3300 6400 3400 6300
+Entry Wire Line
+	3300 6500 3400 6400
+Entry Wire Line
+	3300 6600 3400 6500
+Entry Wire Line
+	3300 6700 3400 6600
+Entry Wire Line
+	3300 6800 3400 6700
+Entry Wire Line
+	3300 6900 3400 6800
+Entry Wire Line
+	3300 7000 3400 6900
+Entry Wire Line
+	3300 7100 3400 7000
+Entry Wire Line
+	3300 7200 3400 7100
+Entry Wire Line
+	3300 7300 3400 7200
+Wire Wire Line
+	2800 3300 3300 3300
+Wire Wire Line
+	2800 3400 3300 3400
+Wire Wire Line
+	2800 3500 3300 3500
+Wire Wire Line
+	2800 3600 3300 3600
+Wire Wire Line
+	2800 3700 3300 3700
+Wire Wire Line
+	2800 3800 3300 3800
+Wire Wire Line
+	2800 3900 3300 3900
+Wire Wire Line
+	2800 4000 3300 4000
+Wire Wire Line
+	2800 4100 3300 4100
+Wire Wire Line
+	2800 4200 3300 4200
+Wire Wire Line
+	2800 4300 3300 4300
+Wire Wire Line
+	2800 4400 3300 4400
+Wire Wire Line
+	2800 4500 3300 4500
+Wire Wire Line
+	2800 4600 3300 4600
+Wire Wire Line
+	2800 5800 3300 5800
+Wire Wire Line
+	2800 5900 3300 5900
+Wire Wire Line
+	2800 6000 3300 6000
+Wire Wire Line
+	2800 6100 3300 6100
+Wire Wire Line
+	2800 6200 3300 6200
+Wire Wire Line
+	2800 6300 3300 6300
+Wire Wire Line
+	2800 6400 3300 6400
+Wire Wire Line
+	2800 6500 3300 6500
+Wire Wire Line
+	2800 6600 3300 6600
+Wire Wire Line
+	2800 6700 3300 6700
+Wire Wire Line
+	2800 6800 3300 6800
+Wire Wire Line
+	2800 6900 3300 6900
+Wire Wire Line
+	2800 7000 3300 7000
+Wire Wire Line
+	2800 7100 3300 7100
+Wire Wire Line
+	2800 7200 3300 7200
+Wire Wire Line
+	2800 7300 3300 7300
+Wire Bus Line
+	3400 3200 4100 3200
+Wire Bus Line
+	4100 3200 4100 6700
+Wire Bus Line
+	3400 3200 3400 7200
+$EndSCHEMATC
